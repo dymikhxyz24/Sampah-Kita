@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:uts/main/home.dart';
 import 'package:uts/main/provider.dart';
 import 'package:uts/main/button.dart';
+import 'package:uts/main/register.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -17,7 +18,10 @@ class _LoginState extends State<Login> {
   Widget build(BuildContext context) {
     var prov = Provider.of<MyProvider>(context);
     return Scaffold(
-      appBar: AppBar(title: const Text("Login")),
+      appBar: AppBar(
+        title: const Text("Login"),
+        automaticallyImplyLeading: false,
+      ),
       body: Container(
         color: Color.fromARGB(255, 183, 251, 131),
         child: Column(children: [
@@ -81,10 +85,12 @@ class _LoginState extends State<Login> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text("Belum Mendaftar ?"),
-              Text(
-                "\tBelum Akun Baru",
-                style:
-                    TextStyle(color: Colors.green, fontWeight: FontWeight.w900),
+              TextButton(
+                child: Text("Buat Akun Baru"),
+                onPressed: () {
+                  Navigator.push(
+                      context, MaterialPageRoute(builder: (_) => Register()));
+                },
               ),
             ],
           ),

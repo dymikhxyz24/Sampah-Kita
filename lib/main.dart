@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:uts/main/login.dart';
+import 'package:uts/main/profile.dart';
 import 'package:uts/main/register.dart';
 import 'package:uts/main/provider.dart';
 import 'package:uts/main/splash.dart';
@@ -23,7 +24,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.green,
       ),
-      home: const Splash(),
+      home: const Profile(),
     );
   }
 }

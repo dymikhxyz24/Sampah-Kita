@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:uts/main/home.dart';
+import 'package:uts/main/login.dart';
 import 'package:uts/main/provider.dart';
 import 'package:uts/main/button.dart';
 
@@ -18,7 +19,10 @@ class _RegisterState extends State<Register> {
   Widget build(BuildContext context) {
     var prov = Provider.of<MyProvider>(context);
     return Scaffold(
-      appBar: AppBar(title: const Text("Register")),
+      appBar: AppBar(
+        title: const Text("Register"),
+        automaticallyImplyLeading: false,
+      ),
       body: Container(
         color: Color.fromARGB(255, 183, 251, 131),
         child: Column(children: [
@@ -102,7 +106,11 @@ class _RegisterState extends State<Register> {
                     _SelectedRadio = value!;
                   });
                 }),
-            Text("Saya Setuju dengan Terms of Service")
+            Text("Saya Setuju dengan"),
+            Text(
+              "Terms of Service",
+              style: TextStyle(color: Colors.green),
+            ),
           ]),
           ElevatedButton(
               style: buttonprimary,
@@ -123,7 +131,20 @@ class _RegisterState extends State<Register> {
               child: Text(
                 "Daftar",
                 style: TextStyle(fontSize: 17),
-              ))
+              )),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text("Sudah punya akun ? Silahkan"),
+              TextButton(
+                child: Text("Login"),
+                onPressed: () {
+                  Navigator.push(
+                      context, MaterialPageRoute(builder: (_) => Login()));
+                },
+              )
+            ],
+          )
         ]),
       ),
     );
