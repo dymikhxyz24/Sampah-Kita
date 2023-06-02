@@ -4,13 +4,12 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:uts/main/login.dart';
 
 class Profile extends StatefulWidget {
-  const Profile({super.key});
-
   @override
   State<Profile> createState() => _ProfileState();
 }
 
 class _ProfileState extends State<Profile> {
+  int _selectedPage = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -280,6 +279,35 @@ class _ProfileState extends State<Profile> {
             ],
           ),
         ],
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _selectedPage,
+        type: BottomNavigationBarType.fixed,
+        backgroundColor: Colors.green,
+        selectedItemColor: Colors.white,
+        items: [
+          BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: "Beranda",
+              backgroundColor: Colors.green),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.notifications),
+              label: "Notifikasi",
+              backgroundColor: Colors.green),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.message),
+              label: "Pesan",
+              backgroundColor: Colors.green),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.info),
+              label: "Info",
+              backgroundColor: Color.fromARGB(121, 255, 7, 7))
+        ],
+        onTap: (index) {
+          setState(() {
+            _selectedPage = index;
+          });
+        },
       ),
     );
   }
