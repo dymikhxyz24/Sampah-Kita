@@ -13,9 +13,10 @@ class Notifikasi extends StatefulWidget {
 
 class _NotifikasiState extends State<Notifikasi> {
   // final items = List<String>.generate(5, (i) => 'Pesan Ke ${i + 1}');
-  List<Course> trashCan = [];
+  List<Pesan> trashCan = [];
   bool isAnyChecked = false;
-  existsInTrashCan(Course course) => trashCan.contains(course);
+  bool checkedState = false;
+  existsInTrashCan(Pesan pesan) => trashCan.contains(pesan);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,7 +31,7 @@ class _NotifikasiState extends State<Notifikasi> {
                   onPressed: () {
                     setState(() {
                       trashCan.clear();
-                      coursesData.forEach((course) => course.checked = false);
+                      pesanData.forEach((pesan) => pesan.checked = false);
                     });
                   }),
               title: Text(trashCan.length.toString()),
@@ -40,7 +41,7 @@ class _NotifikasiState extends State<Notifikasi> {
                       setState(() {
                         int deletedCount = trashCan.length;
 
-                        coursesData
+                        pesanData
                             .removeWhere((item) => trashCan.contains(item));
                         trashCan.clear();
 
@@ -56,18 +57,18 @@ class _NotifikasiState extends State<Notifikasi> {
               ],
             ),
       body: ListView.builder(
-        itemCount: coursesData.length,
+        itemCount: pesanData.length,
         itemBuilder: (BuildContext context, int index) {
           {
-            final item = coursesData[index].name;
-            final Course course = coursesData[index];
+            final item = pesanData[index].name;
+            final Pesan pesan = pesanData[index];
 
             return Dismissible(
               key: UniqueKey(),
 
               onDismissed: (direction) {
                 setState(() {
-                  coursesData.removeAt(index);
+                  pesanData.removeAt(index);
                 });
 
                 ScaffoldMessenger.of(context).showSnackBar(SnackBar(
@@ -79,7 +80,7 @@ class _NotifikasiState extends State<Notifikasi> {
               background: Container(color: Colors.green),
               child: Container(
                 decoration: BoxDecoration(
-                    color: course.checked ? Color.fromARGB(44, 0, 0, 0) : null,
+                    color: pesan.checked ? Color.fromARGB(44, 0, 0, 0) : null,
                     border: Border(
                         bottom: BorderSide(
                             color: Colors.black,
@@ -93,25 +94,28 @@ class _NotifikasiState extends State<Notifikasi> {
                     ),
                   ),
                   onTap: () {
-                    if (course.checked) {
+                    if (pesan.checked) {
                       setState(() {
-                        course.checked = false;
-                        trashCan.remove(course);
+                        pesan.checked = false;
+                        trashCan.remove(pesan);
                       });
                     } else {
-                      setState(() {
-                        course.checked = true;
-                        trashCan.add(course);
-                      });
+                      if (checkedState) {
+                        setState(() {
+                          pesan.checked = true;
+                          trashCan.add(pesan);
+                        });
+                      }
                     }
                   },
                   onLongPress: () {
                     setState(() {
-                      course.checked = !course.checked;
-                      if (course.checked) {
-                        trashCan.add(course);
+                      pesan.checked = !pesan.checked;
+                      checkedState = true;
+                      if (pesan.checked) {
+                        trashCan.add(pesan);
                       } else {
-                        trashCan.remove(course);
+                        trashCan.remove(pesan);
                       }
                     });
                   },
