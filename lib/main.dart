@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:uts/main/info.dart';
 import 'package:uts/main/login.dart';
-import 'package:uts/main/notifikasi.dart';
+import 'package:uts/main/pesan.dart';
+import 'package:uts/main/pesanPage.dart';
 import 'package:uts/main/profile.dart';
 import 'package:uts/main/register.dart';
 import 'package:uts/main/provider.dart';
 import 'package:uts/main/splash.dart';
+import 'package:uts/main/notifikasi.dart';
 
 void main() {
   runApp(MultiProvider(
@@ -26,7 +28,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.green,
       ),
-      home: Notifikasi(),
+      home: pesanPage(),
     );
   }
 }

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 
-import 'package:uts/main/listpesan.dart';
+import 'package:uts/main/dummyNotifikasi.dart';
 
 class Notifikasi extends StatefulWidget {
   const Notifikasi({super.key});
@@ -12,57 +10,31 @@ class Notifikasi extends StatefulWidget {
 }
 
 class _NotifikasiState extends State<Notifikasi> {
-  // final items = List<String>.generate(5, (i) => 'Pesan Ke ${i + 1}');
-  List<Pesan> trashCan = [];
-  bool isAnyChecked = false;
-  bool checkedState = false;
-  existsInTrashCan(Pesan pesan) => trashCan.contains(pesan);
+  void deleteAllItems() {
+    setState(() {
+      pesanData.clear();
+    });
+
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text('Semua pesan telah dihapus'),
+        duration: Duration(milliseconds: 500),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: trashCan.isEmpty
-          ? AppBar(
-              title: Text("Notifikasi"),
-            )
-          : AppBar(
-              backgroundColor: Color.fromARGB(255, 58, 132, 61),
-              leading: IconButton(
-                  icon: Icon(Icons.clear),
-                  onPressed: () {
-                    setState(() {
-                      trashCan.clear();
-                      pesanData.forEach((pesan) => pesan.checked = false);
-                    });
-                  }),
-              title: Text(trashCan.length.toString()),
-              actions: [
-                IconButton(
-                    onPressed: () {
-                      setState(() {
-                        int deletedCount = trashCan.length;
-
-                        pesanData
-                            .removeWhere((item) => trashCan.contains(item));
-                        trashCan.clear();
-
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text('$deletedCount item(s) deleted'),
-                            duration: Duration(milliseconds: 1500),
-                          ),
-                        );
-                      });
-                    },
-                    icon: Icon(Icons.delete))
-              ],
-            ),
+      appBar: AppBar(
+        title: Text("Pesan"),
+      ),
       body: ListView.builder(
         itemCount: pesanData.length,
         itemBuilder: (BuildContext context, int index) {
           {
             final item = pesanData[index].name;
-            final Pesan pesan = pesanData[index];
-
+            final description = pesanData[index].desc;
             return Dismissible(
               key: UniqueKey(),
 
@@ -80,7 +52,6 @@ class _NotifikasiState extends State<Notifikasi> {
               background: Container(color: Colors.green),
               child: Container(
                 decoration: BoxDecoration(
-                    color: pesan.checked ? Color.fromARGB(44, 0, 0, 0) : null,
                     border: Border(
                         bottom: BorderSide(
                             color: Colors.black,
@@ -93,43 +64,16 @@ class _NotifikasiState extends State<Notifikasi> {
                       fontSize: 15,
                     ),
                   ),
-                  onTap: () {
-                    if (pesan.checked) {
-                      setState(() {
-                        pesan.checked = false;
-                        trashCan.remove(pesan);
-                      });
-                    } else {
-                      if (checkedState) {
-                        setState(() {
-                          pesan.checked = true;
-                          trashCan.add(pesan);
-                        });
-                      }
-                    }
-                  },
-                  onLongPress: () {
-                    setState(() {
-                      pesan.checked = !pesan.checked;
-                      checkedState = true;
-                      if (pesan.checked) {
-                        trashCan.add(pesan);
-                      } else {
-                        trashCan.remove(pesan);
-                      }
-                    });
-                  },
+                  subtitle: Text(description),
                 ),
               ),
-              // child: ListTile(
-              //   title: Text(
-              //     item,
-              //     style: TextStyle(decoration: TextDecoration.underline),
-              //   ),
-              // ),
             );
           }
         },
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: deleteAllItems,
+        child: Icon(Icons.delete),
       ),
     );
   }
