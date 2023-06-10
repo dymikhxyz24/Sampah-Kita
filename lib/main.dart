@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:uts/main/DaftarHargaFP.dart';
 import 'package:uts/main/info.dart';
 import 'package:uts/main/login.dart';
 import 'package:uts/main/pesan.dart';
@@ -28,7 +29,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.green,
       ),
-      home: pesanPage(),
+      home: MyList(),
     );
   }
 }
