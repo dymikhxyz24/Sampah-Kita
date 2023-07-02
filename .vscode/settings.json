@@ -1,5 +1,6 @@
 {
     "dart.flutterRunAdditionalArgs": [
         "--no-sound-null-safety"
-    ]
+    ],
+    "discord.enabled": true
 }
