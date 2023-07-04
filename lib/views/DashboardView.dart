@@ -1,21 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:uts/providers/providers.dart';
 import 'package:uts/views/DaftarHargaFP.dart';
 import 'package:uts/views/EdukasiBesi.dart';
 import 'package:uts/views/berlanggananView.dart';
+import 'package:uts/views/langgananView.dart';
 import 'package:uts/views/pengelolaanView.dart';
 import 'package:uts/views/profil.dart';
 import 'package:uts/views/riwayatView.dart';
 
-class ProfileView extends StatefulWidget {
-  const ProfileView({super.key});
+class DashboardView extends StatefulWidget {
+  const DashboardView({super.key});
 
   @override
-  State<ProfileView> createState() => _ProfileViewState();
+  State<DashboardView> createState() => _DashboardViewState();
 }
 
-class _ProfileViewState extends State<ProfileView> {
+class _DashboardViewState extends State<DashboardView> {
   @override
   Widget build(BuildContext context) {
+    var prov = Provider.of<DataDiriProv>(context);
     return Scaffold(
       body: Column(
         children: [
@@ -148,10 +152,19 @@ class _ProfileViewState extends State<ProfileView> {
                     shadowColor: Colors.black,
                     color: Colors.greenAccent[100],
                     child: InkWell(
-                      onTap: () => Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => Berlangganan())),
+                      onTap: () {
+                        if (prov.namaLengkap == "") {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => LangganganView()));
+                        } else {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Berlangganan()));
+                        }
+                      },
                       child: SizedBox(
                         width: 100,
                         height: 100,

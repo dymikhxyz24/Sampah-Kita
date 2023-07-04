@@ -1,7 +1,7 @@
 //import 'package:flutter/material.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:provider/provider.dart';
-import 'package:uts/views/profile.dart';
+import 'package:uts/views/Dashboard.dart';
 import 'package:uts/providers/provider1.dart';
 import 'package:uts/providers/providers.dart';
 import 'package:flutter/material.dart';
@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
           title: 'Flutter Demo',
           theme: ThemeData(primarySwatch: Colors.green, useMaterial3: true),
-          home: Profile()),
+          home: Dashboard()),
     );
   }
 }

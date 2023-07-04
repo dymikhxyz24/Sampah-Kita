@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:uts/views/home.dart';
 import 'package:uts/providers/provider1.dart';
-import 'package:uts/views/button.dart';
+import 'package:uts/views/CustomButton.dart';
+import 'package:uts/views/Dashboard.dart';
 import 'package:uts/views/register.dart';
 
 class Login extends StatefulWidget {
@@ -108,8 +108,8 @@ class _LoginState extends State<Login> {
                       !prov.isemailEmpty &&
                       !prov.isNameEmpty &&
                       !prov.isrepassEmpty) {
-                    Navigator.push(
-                        context, MaterialPageRoute(builder: (_) => Home()));
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (_) => Dashboard()));
                   }
                 },
                 child: Text(

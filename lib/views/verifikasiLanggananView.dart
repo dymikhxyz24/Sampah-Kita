@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:uts/views/Dashboard.dart';
 
 class VerifikasiLangganan extends StatefulWidget {
   const VerifikasiLangganan({super.key});
@@ -66,7 +67,8 @@ class _VerifikasiLanggananState extends State<VerifikasiLangganan> {
           SizedBox(height: 100),
           ElevatedButton(
               onPressed: () {
-                Navigator.of(context).pop();
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => Dashboard()));
               },
               child: Text(
                 "Halaman Utama",

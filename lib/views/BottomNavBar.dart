@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:uts/views/info.dart';
-
-import 'package:uts/views/login.dart';
-import 'package:uts/views/notifikasi.dart';
+import 'package:uts/views/Info.dart';
+import 'package:uts/views/Login.dart';
+import 'package:uts/views/Notifikasi.dart';
 import 'package:uts/views/pesan.dart';
-import 'package:uts/views/profile.dart';
+import 'package:uts/views/Dashboard.dart';
 
 class BottomNavBar extends StatefulWidget {
   const BottomNavBar(

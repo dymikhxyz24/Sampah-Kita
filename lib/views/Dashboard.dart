@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:uts/views/BottomNavBar.dart';
-import 'package:uts/views/ProfileView.dart';
-import 'package:uts/views/info.dart';
-import 'package:uts/views/notifikasi.dart';
+import 'package:uts/views/DashboardView.dart';
+import 'package:uts/views/Info.dart';
+import 'package:uts/views/Notifikasi.dart';
 import 'package:uts/views/pesan.dart';
 import 'package:uts/views/riwayatView.dart';
 
-class Profile extends StatefulWidget {
+class Dashboard extends StatefulWidget {
   @override
-  State<Profile> createState() => _ProfileState();
+  State<Dashboard> createState() => _DashboardState();
 }
 
-class _ProfileState extends State<Profile> {
+class _DashboardState extends State<Dashboard> {
   int _selectedPage = 0;
 
   void _onTabTapped(int index) {
@@ -24,7 +24,7 @@ class _ProfileState extends State<Profile> {
   Widget _buildPageContent() {
     switch (_selectedPage) {
       case 0:
-        return ProfileView();
+        return DashboardView();
       case 1:
         return Notifikasi();
       case 2:
@@ -32,7 +32,7 @@ class _ProfileState extends State<Profile> {
       case 3:
         return Info();
       default:
-        return ProfileView();
+        return DashboardView();
     }
   }
 

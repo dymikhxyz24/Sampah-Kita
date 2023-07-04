@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:uts/views/home.dart';
-import 'package:uts/views/login.dart';
+import 'package:uts/views/Login.dart';
 import 'package:uts/providers/provider1.dart';
-import 'package:uts/views/button.dart';
+import 'package:uts/views/CustomButton.dart';
 
 class Register extends StatefulWidget {
   const Register({super.key});
@@ -125,7 +124,7 @@ class _RegisterState extends State<Register> {
                     !prov.isNameEmpty &&
                     !prov.isrepassEmpty) {
                   Navigator.push(
-                      context, MaterialPageRoute(builder: (_) => Home()));
+                      context, MaterialPageRoute(builder: (_) => Login()));
                 }
               },
               child: Text(
