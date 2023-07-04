@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:uts/main/dummyPesan.dart';
+import 'package:uts/data/dummyPesan.dart';
 
 class pesanPage extends StatefulWidget {
   const pesanPage({super.key});

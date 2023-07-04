@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 
-import 'package:uts/main/dummyNotifikasi.dart';
+import 'package:uts/data/dummyNotifikasi.dart';
 
 class homePesan extends StatefulWidget {
   const homePesan({super.key});
@@ -94,7 +93,7 @@ class _homePesanState extends State<homePesan> {
                   ),
                   subtitle: Text(description),
                   onTap: () {
-                    if (pesan.checked) {
+                    if (pesan.checked & checkedState) {
                       setState(() {
                         pesan.checked = false;
                         trashCan.remove(pesan);

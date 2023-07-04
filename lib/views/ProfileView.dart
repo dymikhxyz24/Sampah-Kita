@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:uts/main/login.dart';
+import 'package:uts/views/DaftarHargaFP.dart';
+import 'package:uts/views/EdukasiBesi.dart';
+import 'package:uts/views/berlanggananView.dart';
+import 'package:uts/views/pengelolaanView.dart';
+import 'package:uts/views/profil.dart';
+import 'package:uts/views/riwayatView.dart';
 
-class Profile extends StatefulWidget {
+class ProfileView extends StatefulWidget {
+  const ProfileView({super.key});
+
   @override
-  State<Profile> createState() => _ProfileState();
+  State<ProfileView> createState() => _ProfileViewState();
 }
 
-class _ProfileState extends State<Profile> {
-  int _selectedPage = 0;
+class _ProfileViewState extends State<ProfileView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -69,7 +73,7 @@ class _ProfileState extends State<Profile> {
                   color: Colors.greenAccent[100],
                   child: InkWell(
                     onTap: () => Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => Login())),
+                        MaterialPageRoute(builder: (context) => EdukasiBesi())),
                     child: SizedBox(
                       width: 100,
                       height: 100,
@@ -103,8 +107,10 @@ class _ProfileState extends State<Profile> {
                     shadowColor: Colors.black,
                     color: Colors.greenAccent[100],
                     child: InkWell(
-                      onTap: () => Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => Login())),
+                      onTap: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => PengelolaanView())),
                       child: SizedBox(
                         width: 100,
                         height: 100,
@@ -142,8 +148,10 @@ class _ProfileState extends State<Profile> {
                     shadowColor: Colors.black,
                     color: Colors.greenAccent[100],
                     child: InkWell(
-                      onTap: () => Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => Login())),
+                      onTap: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => Berlangganan())),
                       child: SizedBox(
                         width: 100,
                         height: 100,
@@ -176,8 +184,10 @@ class _ProfileState extends State<Profile> {
                     shadowColor: Colors.black,
                     color: Colors.greenAccent[100],
                     child: InkWell(
-                      onTap: () => Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => Login())),
+                      onTap: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => DaftarHargaFP())),
                       child: SizedBox(
                         width: 100,
                         height: 100,
@@ -215,8 +225,10 @@ class _ProfileState extends State<Profile> {
                     shadowColor: Colors.black,
                     color: Colors.greenAccent[100],
                     child: InkWell(
-                      onTap: () => Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => Login())),
+                      onTap: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => RiwayatView())),
                       child: SizedBox(
                         width: 100,
                         height: 100,
@@ -250,7 +262,7 @@ class _ProfileState extends State<Profile> {
                     color: Colors.greenAccent[100],
                     child: InkWell(
                       onTap: () => Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => Login())),
+                          MaterialPageRoute(builder: (context) => Profil())),
                       child: SizedBox(
                         width: 100,
                         height: 100,
@@ -279,35 +291,6 @@ class _ProfileState extends State<Profile> {
             ],
           ),
         ],
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _selectedPage,
-        type: BottomNavigationBarType.fixed,
-        backgroundColor: Colors.green,
-        selectedItemColor: Colors.white,
-        items: [
-          BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: "Beranda",
-              backgroundColor: Colors.green),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.notifications),
-              label: "Notifikasi",
-              backgroundColor: Colors.green),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.message),
-              label: "Pesan",
-              backgroundColor: Colors.green),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.info),
-              label: "Info",
-              backgroundColor: Color.fromARGB(121, 255, 7, 7))
-        ],
-        onTap: (index) {
-          setState(() {
-            _selectedPage = index;
-          });
-        },
       ),
     );
   }

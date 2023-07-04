@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:uts/main/DaftarHargaFP.dart';
-import 'package:uts/main/dummyDaftarHarga.dart';
+import 'package:uts/data/dummyDaftarHarga.dart';
 
 class DaftarHarga1 extends StatefulWidget {
   @override

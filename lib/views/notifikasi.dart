@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:uts/main/dummyNotifikasi.dart';
+import 'package:uts/data/dummyNotifikasi.dart';
 
 class Notifikasi extends StatefulWidget {
   const Notifikasi({super.key});
@@ -12,12 +12,12 @@ class Notifikasi extends StatefulWidget {
 class _NotifikasiState extends State<Notifikasi> {
   void deleteAllItems() {
     setState(() {
-      pesanData.clear();
+      notifData.clear();
     });
 
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: Text('Semua pesan telah dihapus'),
+        content: Text('Semua notif telah dihapus'),
         duration: Duration(milliseconds: 500),
       ),
     );
@@ -27,20 +27,20 @@ class _NotifikasiState extends State<Notifikasi> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Pesan"),
+        title: Text("Notifikasi"),
       ),
       body: ListView.builder(
-        itemCount: pesanData.length,
+        itemCount: notifData.length,
         itemBuilder: (BuildContext context, int index) {
           {
-            final item = pesanData[index].name;
-            final description = pesanData[index].desc;
+            final item = notifData[index].nameNotif;
+            final description = notifData[index].descNotif;
             return Dismissible(
               key: UniqueKey(),
 
               onDismissed: (direction) {
                 setState(() {
-                  pesanData.removeAt(index);
+                  notifData.removeAt(index);
                 });
 
                 ScaffoldMessenger.of(context).showSnackBar(SnackBar(

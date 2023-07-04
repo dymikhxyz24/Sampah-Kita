@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:uts/main/home.dart';
-import 'package:uts/main/login.dart';
-import 'package:uts/main/provider.dart';
-import 'package:uts/main/button.dart';
+import 'package:uts/views/home.dart';
+import 'package:uts/views/login.dart';
+import 'package:uts/providers/provider1.dart';
+import 'package:uts/views/button.dart';
 
 class Register extends StatefulWidget {
   const Register({super.key});
