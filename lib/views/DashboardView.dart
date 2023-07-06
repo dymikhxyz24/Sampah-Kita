@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:uts/providers/providers.dart';
 import 'package:uts/views/DaftarHargaFP.dart';
 import 'package:uts/views/EdukasiBesi.dart';
+import 'package:uts/views/MyList.dart';
 import 'package:uts/views/berlanggananView.dart';
 import 'package:uts/views/langgananView.dart';
 import 'package:uts/views/pengelolaanView.dart';
@@ -77,7 +78,7 @@ class _DashboardViewState extends State<DashboardView> {
                   color: Colors.greenAccent[100],
                   child: InkWell(
                     onTap: () => Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => EdukasiBesi())),
+                        MaterialPageRoute(builder: (context) => EdukasiList())),
                     child: SizedBox(
                       width: 100,
                       height: 100,
