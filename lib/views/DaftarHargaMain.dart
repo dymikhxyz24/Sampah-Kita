@@ -43,7 +43,6 @@ class _DaftarHarga1State extends State<DaftarHarga1> {
         title: Text('Daftar Harga'),
         centerTitle: true,
         backgroundColor: Colors.green,
-        iconTheme: IconThemeData(color: Colors.black),
       ),
       body: Column(
         children: [

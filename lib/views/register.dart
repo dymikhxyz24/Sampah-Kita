@@ -12,7 +12,7 @@ class Register extends StatefulWidget {
 }
 
 class _RegisterState extends State<Register> {
-  String _SelectedRadio = "";
+  bool isChecked = false;
 
   @override
   Widget build(BuildContext context) {
@@ -97,12 +97,11 @@ class _RegisterState extends State<Register> {
             ),
           ),
           Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-            Radio(
-                value: "Setuju",
-                groupValue: _SelectedRadio,
-                onChanged: (value) {
+            Checkbox(
+                value: isChecked,
+                onChanged: (bool? value) {
                   setState(() {
-                    _SelectedRadio = value!;
+                    isChecked = value!;
                   });
                 }),
             Text("Saya Setuju dengan"),
@@ -122,7 +121,8 @@ class _RegisterState extends State<Register> {
                 if (!prov.ispassEmpty &&
                     !prov.isemailEmpty &&
                     !prov.isNameEmpty &&
-                    !prov.isrepassEmpty) {
+                    !prov.isrepassEmpty &&
+                    isChecked) {
                   Navigator.push(
                       context, MaterialPageRoute(builder: (_) => Login()));
                 }

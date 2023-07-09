@@ -5,6 +5,8 @@ import 'package:uts/views/Dashboard.dart';
 import 'package:uts/providers/provider1.dart';
 import 'package:uts/providers/providers.dart';
 import 'package:flutter/material.dart';
+import 'package:uts/views/profil.dart';
+import 'package:uts/views/register.dart';
 
 void main() {
   initializeDateFormatting("id_ID");
@@ -26,8 +28,8 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
           title: 'Flutter Demo',
-          theme: ThemeData(primarySwatch: Colors.green, useMaterial3: true),
-          home: Dashboard()),
+          theme: ThemeData(primarySwatch: Colors.green),
+          home: Profil()),
     );
   }
 }

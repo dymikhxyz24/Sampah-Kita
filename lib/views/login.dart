@@ -13,7 +13,7 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-  String _SelectedRadio = "";
+  bool isChecked = false;
   @override
   Widget build(BuildContext context) {
     var prov = Provider.of<MyProvider>(context);
@@ -66,12 +66,11 @@ class _LoginState extends State<Login> {
             ),
           ),
           Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-            Radio(
-                value: "Simpan",
-                groupValue: _SelectedRadio,
-                onChanged: (value) {
+            Checkbox(
+                value: isChecked,
+                onChanged: (bool? value) {
                   setState(() {
-                    _SelectedRadio = value!;
+                    isChecked = value!;
                   });
                 }),
             Text("Simpan Info Login"),

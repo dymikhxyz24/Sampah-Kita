@@ -38,18 +38,6 @@ class _InfoState extends State<Info> {
               padding: const EdgeInsets.all(10),
               child: Text(
                   'Kami juga menyediakan layanan pengambilan sampah dari rumah pengguna dengan reward atas pengumpulan sampah yang telah dilakukan. Dalam pengelolaan sampah, pengguna hanya perlu memilah sampah plastik berdasarkan jenisnya menjadi organik atau anorganik. Kami juga memiliki fitur langganan bulanan yang memungkinkan pengguna untuk mendapatkan layanan pengambilan sampah dari rumah secara teratur dengan harga yang lebih terjangkau. ')),
-          RichText(
-              text: TextSpan(children: [
-            WidgetSpan(
-              child: Icon(
-                Icons.add,
-                size: 14,
-              ),
-            ),
-            TextSpan(
-              text: "Click ",
-            ),
-          ]))
         ]),
       ),
     );

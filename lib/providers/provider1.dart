@@ -41,3 +41,13 @@ class MyProvider extends ChangeNotifier {
     notifyListeners();
   }
 }
+
+// class DataRegister extends ChangeNotifier {
+//   String regNama = '';
+//   String regEmail = '';
+//   String  = '';
+//   String regNama = '';
+//   String regNama = '';
+//   String regNama = '';
+//   String regNama = '';
+// }

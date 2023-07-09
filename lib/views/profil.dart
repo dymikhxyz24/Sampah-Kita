@@ -30,16 +30,18 @@ class Profil extends StatelessWidget {
             "https://cdn.discordapp.com/attachments/942624379735511100/1122850687991169104/man.png",
             height: 100,
           ),
-          ListTile(
-            contentPadding: EdgeInsets.only(left: 100, right: 100),
-            leading: Image.network(
-              "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/WhatsApp_icon.png/598px-WhatsApp_icon.png",
-              height: 30,
-            ),
-            title: Text(
-              "088876541239",
-              style: TextStyle(fontSize: 17, fontWeight: FontWeight.w500),
-            ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.network(
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/WhatsApp_icon.png/598px-WhatsApp_icon.png',
+                scale: 18,
+              ),
+              Text(
+                "0811256498",
+                style: TextStyle(fontSize: 18),
+              )
+            ],
           ),
           Text(
             "M Shahwal Ramadhan Boger",

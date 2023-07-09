@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:uts/providers/provider1.dart';
 import 'package:uts/providers/providers.dart';
 import 'package:uts/views/DaftarHargaFP.dart';
 import 'package:uts/views/EdukasiBesi.dart';
@@ -21,6 +22,7 @@ class _DashboardViewState extends State<DashboardView> {
   @override
   Widget build(BuildContext context) {
     var prov = Provider.of<DataDiriProv>(context);
+    var prov1 = Provider.of<MyProvider>(context);
     return Scaffold(
       body: Column(
         children: [
@@ -45,7 +47,7 @@ class _DashboardViewState extends State<DashboardView> {
                                 "https://cdn.discordapp.com/attachments/972198684550897696/1113113994664878101/Group_17.png",
                                 scale: 1.5)),
                         Text(
-                          "M Shahwal Ramadhan Boger",
+                          prov1.tfemail.text,
                           style: TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.w100,
