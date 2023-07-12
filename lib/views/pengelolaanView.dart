@@ -2,6 +2,7 @@ import 'package:dropdown_search/dropdown_search.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:uts/views/Dashboard.dart';
 import '../providers/providers.dart';
 import '../views/mapsPengelolaanViews.dart';
 import 'package:provider/provider.dart';
@@ -52,6 +53,8 @@ class _PengelolaanViewState extends State<PengelolaanView> {
   @override
   Widget build(BuildContext context) {
     var prov = Provider.of<PengelolaanProv>(context);
+    var prov1 = Provider.of<RegisterData>(context);
+
     return Scaffold(
       appBar: AppBar(
         title: Text("Pengelolaan"),
@@ -326,13 +329,11 @@ class _PengelolaanViewState extends State<PengelolaanView> {
                   ),
                   ElevatedButton(
                     onPressed: () {
-                      print(prov.tanggalPengambilan);
-                      print(prov.lokasiPengambilan);
                       if (prov.tanggalPengambilan != "" &&
                           prov.lokasiPengambilan != "") {
                         Navigator.of(context)
                             .push(MaterialPageRoute(builder: (context) {
-                          return MapsPengelolaanView();
+                          return Dashboard();
                         }));
                       } else {
                         showDialog(

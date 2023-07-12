@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:uts/providers/providers.dart';
 
 class GantiPassword extends StatefulWidget {
   const GantiPassword({Key? key}) : super(key: key);
@@ -8,14 +10,37 @@ class GantiPassword extends StatefulWidget {
 }
 
 class _GantiPasswordState extends State<GantiPassword> {
-  final TextEditingController _passwordLamaController = TextEditingController();
-  final TextEditingController _passwordBaruController = TextEditingController();
-  final TextEditingController _konfirmasiPasswordController =
+  final TextEditingController passwordLamaController = TextEditingController();
+  final TextEditingController passwordBaruController = TextEditingController();
+  final TextEditingController konfirmasiPasswordController =
       TextEditingController();
-
+  var alert = '';
   bool _showPasswordLama = false;
   bool _showPasswordBaru = false;
   bool _showKonfirmasiPassword = false;
+  bool _oldPass = false;
+
+  bool _pass = false;
+  bool _repass = false;
+  bool _showErroroldPassword = false;
+
+  bool _showErrorPassword = false;
+  bool _showErrorrePassword = false;
+
+  void _validateInput() {
+    setState(() {
+      _showErroroldPassword = passwordLamaController.text.length < 6;
+      _showErrorPassword = passwordBaruController.text.length < 6;
+      _showErrorrePassword = konfirmasiPasswordController.text.length < 6;
+    });
+  }
+
+  @override
+  void dispose() {
+    passwordBaruController.dispose();
+    konfirmasiPasswordController.dispose();
+    super.dispose();
+  }
 
   Future<void> _showSuccessDialog() async {
     await showDialog<void>(
@@ -27,9 +52,9 @@ class _GantiPasswordState extends State<GantiPassword> {
             TextButton(
               child: Text('OK'),
               onPressed: () {
-                _passwordLamaController.clear();
-                _passwordBaruController.clear();
-                _konfirmasiPasswordController.clear();
+                passwordLamaController.clear();
+                passwordBaruController.clear();
+                konfirmasiPasswordController.clear();
                 Navigator.of(context).pop();
               },
             ),
@@ -41,6 +66,8 @@ class _GantiPasswordState extends State<GantiPassword> {
 
   @override
   Widget build(BuildContext context) {
+    var notSame;
+    var prov = Provider.of<RegisterData>(context);
     return Scaffold(
       appBar: AppBar(
         title: const Text("Ganti Password", textAlign: TextAlign.center),
@@ -66,15 +93,31 @@ class _GantiPasswordState extends State<GantiPassword> {
               color: Color(0xffff3bd77d),
               height: 30,
             ),
+            Text(
+              alert,
+              style: TextStyle(color: Colors.red, fontWeight: FontWeight.w600),
+            ),
             Card(
               child: Padding(
                 padding: EdgeInsets.all(16),
                 child: Column(
                   children: [
                     TextFormField(
-                      controller: _passwordLamaController,
+                      controller: passwordLamaController,
+                      onChanged: (_) => _validateInput(),
                       obscureText: !_showPasswordLama,
                       decoration: InputDecoration(
+                        errorText: _oldPass
+                            ? (passwordLamaController.text.isEmpty
+                                ? "Password Tidak Boleh Kosong"
+                                : _showErroroldPassword
+                                    ? "Password harus min. 6 karakter"
+                                    : null)
+                            : null,
+                        contentPadding: EdgeInsets.all(20),
+                        fillColor: Colors.white,
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10)),
                         labelText: 'Password Lama',
                         hintText: 'Masukkan password lama',
                         suffixIcon: IconButton(
@@ -95,16 +138,27 @@ class _GantiPasswordState extends State<GantiPassword> {
                 ),
               ),
             ),
-            SizedBox(height: 16),
             Card(
               child: Padding(
                 padding: EdgeInsets.all(16),
                 child: Column(
                   children: [
                     TextFormField(
-                      controller: _passwordBaruController,
+                      controller: passwordBaruController,
+                      onChanged: (_) => _validateInput(),
                       obscureText: !_showPasswordBaru,
                       decoration: InputDecoration(
+                        errorText: _pass
+                            ? (passwordBaruController.text.isEmpty
+                                ? "Password Tidak Boleh Kosong"
+                                : _showErrorPassword
+                                    ? "Password harus min. 6 karakter"
+                                    : null)
+                            : null,
+                        contentPadding: EdgeInsets.all(20),
+                        fillColor: Colors.white,
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10)),
                         labelText: 'Password Baru',
                         hintText: 'Masukkan password baru',
                         suffixIcon: IconButton(
@@ -125,16 +179,30 @@ class _GantiPasswordState extends State<GantiPassword> {
                 ),
               ),
             ),
-            SizedBox(height: 16),
             Card(
               child: Padding(
                 padding: EdgeInsets.all(16),
                 child: Column(
                   children: [
                     TextFormField(
-                      controller: _konfirmasiPasswordController,
+                      controller: konfirmasiPasswordController,
+                      onChanged: (_) => _validateInput(),
                       obscureText: !_showKonfirmasiPassword,
                       decoration: InputDecoration(
+                        errorText: _repass
+                            ? (konfirmasiPasswordController.text.isEmpty
+                                ? "Konfirmasi Password Tidak Boleh Kosong"
+                                : _showErrorrePassword
+                                    ? "Konfirmasi Password harus min. 6 karakter"
+                                    : konfirmasiPasswordController.text !=
+                                            passwordBaruController.text
+                                        ? "Konfirmasi Password harus sama dengan Password diatas"
+                                        : null)
+                            : null,
+                        contentPadding: EdgeInsets.all(20),
+                        fillColor: Colors.white,
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10)),
                         labelText: 'Konfirmasi Password Baru',
                         hintText: 'Konfirmasi password baru',
                         suffixIcon: IconButton(
@@ -156,20 +224,51 @@ class _GantiPasswordState extends State<GantiPassword> {
                 ),
               ),
             ),
-            SizedBox(height: 16),
             ElevatedButton(
               onPressed: () {
-                String passwordLama = _passwordLamaController.text;
-                String passwordBaru = _passwordBaruController.text;
-                String konfirmasiPassword = _konfirmasiPasswordController.text;
+                String passwordLama = passwordLamaController.text;
+                String passwordBaru = passwordBaruController.text;
+                String konfirmasiPassword = konfirmasiPasswordController.text;
 
                 if (passwordLama.isNotEmpty &&
                     passwordBaru.isNotEmpty &&
                     konfirmasiPassword.isNotEmpty &&
+                    passwordLama == prov.userLogin['Password'] &&
+                    passwordBaru != passwordLama &&
                     passwordBaru == konfirmasiPassword) {
-                  // Password berhasil diperbarui
                   _showSuccessDialog();
-                } else {
+                  setState(() {
+                    _oldPass = false;
+                    _pass = false;
+                    _repass = false;
+                  });
+                }
+                if (passwordLama.isNotEmpty &&
+                    passwordBaru.isNotEmpty &&
+                    konfirmasiPassword.isNotEmpty &&
+                    passwordLama == passwordBaru &&
+                    passwordBaru == prov.userLogin['Password']) {
+                  setState(() {
+                    alert =
+                        'Password Baru tidak boleh sama dengan Password Lama';
+                  });
+                }
+                if (passwordLama.isNotEmpty &&
+                    passwordBaru.isNotEmpty &&
+                    konfirmasiPassword.isNotEmpty &&
+                    passwordBaru != konfirmasiPassword) {
+                  setState(() {
+                    alert =
+                        'Konfirmasi Password harus sama dengan Password Baru';
+                  });
+                } else if (passwordLama.isEmpty ||
+                    passwordBaru.isEmpty ||
+                    konfirmasiPassword.isEmpty) {
+                  setState(() {
+                    _oldPass = true;
+                    _pass = true;
+                    _repass = true;
+                  });
                   showDialog(
                     context: context,
                     builder: (BuildContext context) {

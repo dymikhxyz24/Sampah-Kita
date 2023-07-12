@@ -1,6 +1,7 @@
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:uts/views/profil.dart';
 import '../providers/providers.dart';
 import '../views/pengisianDataDiri2View.dart';
 import 'package:provider/provider.dart';
@@ -13,15 +14,14 @@ class PengisianDataDiri extends StatefulWidget {
 }
 
 class _PengisianDataDiriState extends State<PengisianDataDiri> {
-  String? namaPanggilan;
-  String? namaLengkap;
-  String? email;
-  String? noHP;
-  DateTime? selectedDate;
-  String? selectedGender;
+  TextEditingController namaPanggilanController = TextEditingController();
+  TextEditingController namaLengkapController = TextEditingController();
+
+  TextEditingController noHpController = TextEditingController();
+  String tgllahirController = '';
+  String? gender;
   String? pendidikanTerakhir;
   String? pekerjaan;
-  String? tanggalLahir;
 
   List<String> pendidikanTerakhirList = [
     "SD",
@@ -35,9 +35,6 @@ class _PengisianDataDiriState extends State<PengisianDataDiri> {
     "Belum Bekerja",
     "Buruh"
   ];
-
-  final dateFormat = DateFormat('dd MMMM yyyy');
-
   Future<void> _selectDate(BuildContext context) async {
     final DateTime? pickedDate = await showDatePicker(
       context: context,
@@ -58,14 +55,18 @@ class _PengisianDataDiriState extends State<PengisianDataDiri> {
     if (pickedDate != null) {
       setState(() {
         // selectedDate = pickedDate;
-        tanggalLahir = dateFormat.format(pickedDate);
+        tgllahirController = dateFormat.format(pickedDate);
       });
     }
   }
 
+  DateTime? selectedDate;
+  final dateFormat = DateFormat('dd MMMM yyyy');
+
   @override
   Widget build(BuildContext context) {
     final prov = Provider.of<DataDiriProv>(context);
+    var prov1 = Provider.of<RegisterData>(context);
 
     return Scaffold(
       appBar: AppBar(
@@ -89,6 +90,7 @@ class _PengisianDataDiriState extends State<PengisianDataDiri> {
                 color: Colors.black,
               ),
               TextField(
+                controller: namaPanggilanController,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   label: Text("Nama Panggilan"),
@@ -96,58 +98,30 @@ class _PengisianDataDiriState extends State<PengisianDataDiri> {
                   fillColor: Colors.white,
                 ),
                 cursorColor: Colors.green,
-                onChanged: (val) {
-                  setState(() {
-                    namaPanggilan = val;
-                  });
-                },
+                keyboardType: TextInputType.name,
               ),
               SizedBox(
                 height: 20,
               ),
               TextField(
+                controller: namaLengkapController,
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
                     label: Text("Nama Lengkap"),
                     filled: true,
                     fillColor: Colors.white),
-                onChanged: (val) {
-                  setState(() {
-                    namaLengkap = val;
-                  });
-                },
               ),
               SizedBox(
                 height: 20,
               ),
               TextField(
-                keyboardType: TextInputType.emailAddress,
-                decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    label: Text("Email"),
-                    filled: true,
-                    fillColor: Colors.white),
-                onChanged: (val) {
-                  setState(() {
-                    email = val;
-                  });
-                },
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              TextField(
+                controller: noHpController,
                 keyboardType: TextInputType.phone,
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
                     label: Text("No HP"),
                     filled: true,
                     fillColor: Colors.white),
-                onChanged: (val) {
-                  setState(() {
-                    noHP = val;
-                  });
-                },
               ),
               SizedBox(
                 height: 20,
@@ -178,8 +152,8 @@ class _PengisianDataDiriState extends State<PengisianDataDiri> {
                               ),
                               elevation: MaterialStatePropertyAll(0)),
                           child: Text(
-                              tanggalLahir != null
-                                  ? tanggalLahir!
+                              tgllahirController.isNotEmpty
+                                  ? tgllahirController
                                   : 'Pilih tanggal',
                               style: TextStyle(fontSize: 16)),
                         ),
@@ -195,11 +169,11 @@ class _PengisianDataDiriState extends State<PengisianDataDiri> {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           Radio(
-                            value: "pria",
-                            groupValue: selectedGender,
+                            value: "Pria",
+                            groupValue: gender,
                             onChanged: (val) {
                               setState(() {
-                                selectedGender = val;
+                                gender = val!;
                               });
                             },
                             activeColor: Colors.green,
@@ -207,11 +181,11 @@ class _PengisianDataDiriState extends State<PengisianDataDiri> {
                           ),
                           Text("L"),
                           Radio(
-                            value: "wanita",
-                            groupValue: selectedGender,
+                            value: "Wanita",
+                            groupValue: gender,
                             onChanged: (val) {
                               setState(() {
-                                selectedGender = val;
+                                gender = val;
                               });
                             },
                             activeColor: Colors.green,
@@ -278,28 +252,25 @@ class _PengisianDataDiriState extends State<PengisianDataDiri> {
                     ),
                     ElevatedButton(
                       onPressed: () {
-                        if (namaPanggilan != null &&
-                            namaLengkap != null &&
-                            email != null &&
-                            noHP != null &&
-                            tanggalLahir != null &&
-                            selectedGender != null &&
-                            pendidikanTerakhir != null &&
-                            pekerjaan != null) {
-                          prov.updateData(
-                              namaPanggilan: namaPanggilan,
-                              namaLengkap: namaLengkap,
-                              email: email,
-                              noHp: noHP,
-                              tanggalLahir: tanggalLahir,
-                              jenisKelamin: selectedGender,
-                              pendidikanTerakhir: pendidikanTerakhir,
-                              pekerjaan: pekerjaan);
-
-                          Navigator.of(context)
-                              .push(MaterialPageRoute(builder: (context) {
-                            return PengisianDataDiriSecond();
-                          }));
+                        if (namaPanggilanController.text.isNotEmpty &&
+                            namaLengkapController.text.isNotEmpty &&
+                            noHpController.text.isNotEmpty &&
+                            tgllahirController.isNotEmpty &&
+                            gender!.isNotEmpty &&
+                            pendidikanTerakhir!.isNotEmpty &&
+                            pekerjaan!.isNotEmpty) {
+                          prov1.updateUserData1(
+                              namaPanggilanController.text.trim(),
+                              namaLengkapController.text.trim(),
+                              noHpController.text.trim(),
+                              pekerjaan!.trim(),
+                              pendidikanTerakhir!.trim(),
+                              gender!.trim(),
+                              tgllahirController.trim());
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (_) => PengisianDataDiriSecond()));
                         } else {
                           showDialog(
                               context: context,

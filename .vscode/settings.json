@@ -3,5 +3,6 @@
         "--no-sound-null-safety"
     ],
     "discord.enabled": true,
-    "cmake.configureOnOpen": false
+    "cmake.configureOnOpen": false,
+    "cmake.sourceDirectory": "G:/D/backup_uts/Sampah-Kita/linux"
 }

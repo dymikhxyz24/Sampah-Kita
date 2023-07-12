@@ -2,9 +2,13 @@
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:provider/provider.dart';
 import 'package:uts/views/Dashboard.dart';
-import 'package:uts/providers/provider1.dart';
 import 'package:uts/providers/providers.dart';
 import 'package:flutter/material.dart';
+import 'package:uts/views/DashboardView.dart';
+import 'package:uts/views/GantiPassword.dart';
+import 'package:uts/views/MyList.dart';
+import 'package:uts/views/SubFiturProfil.dart';
+import 'package:uts/views/login.dart';
 import 'package:uts/views/profil.dart';
 import 'package:uts/views/register.dart';
 
@@ -21,7 +25,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (context) => MyProvider()),
+        ChangeNotifierProvider(create: (context) => RegisterData()),
         ChangeNotifierProvider(create: (context) => PengelolaanProv()),
         ChangeNotifierProvider(create: (context) => DataDiriProv()),
         ChangeNotifierProvider(create: (context) => DataBerlanggananProv()),
@@ -29,7 +33,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
           title: 'Flutter Demo',
           theme: ThemeData(primarySwatch: Colors.green),
-          home: Profil()),
+          home: Login()),
     );
   }
 }

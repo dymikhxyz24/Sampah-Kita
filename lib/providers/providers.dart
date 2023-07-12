@@ -1,4 +1,9 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:uts/views/cardHello.dart';
+
+import 'package:uts/views/cardTruck.dart';
 
 import '../models/models.dart';
 
@@ -20,7 +25,6 @@ class PengelolaanProv with ChangeNotifier {
   double get lati => _lati;
   double get long => _long;
   List<jenisBeratModel> get jenisBerat => _jenisBerat;
-
   void setFotoSampah(val) {
     _fotoSampah = val;
     notifyListeners();
@@ -33,6 +37,7 @@ class PengelolaanProv with ChangeNotifier {
 
   void setTanggalPengambilan(val) {
     _tanggalPengambilan = val;
+    if (_tanggalPengambilan != '') {}
     notifyListeners();
   }
 
@@ -68,39 +73,22 @@ class PengelolaanProv with ChangeNotifier {
 }
 
 class DataDiriProv with ChangeNotifier {
-  // String _namaPanggilan = "";
-  // String _namaLengkap = "";
-  // String _email = "";
-  // double _noHp = 0;
-  // String _tanggalLahir = "";
-  // String _jenisKelamin = "";
-  // String _pendidikanTerakhir = "";
-  // String _pekerjaan = "";
+  String namaPanggilan;
+  String namaLengkap;
+  String email;
+  String noHp;
+  String tanggalLahir;
+  String jenisKelamin;
+  String pendidikanTerakhir;
+  String pekerjaan;
 
-  // String _fotoKTP = "";
-  // String _provinsi = "";
-  // String _kota = "";
-  // String _kecamatan = "";
-  // String _kelurahan = "";
-  // String _alamat = "";
-  // double _kodePos = 0;
-
-  String? namaPanggilan;
-  String? namaLengkap;
-  String? email;
-  String? noHp;
-  String? tanggalLahir;
-  String? jenisKelamin;
-  String? pendidikanTerakhir;
-  String? pekerjaan;
-
-  String? fotoKTP;
-  String? provinsi;
-  String? kota;
-  String? kecamatan;
-  String? kelurahan;
-  String? alamat;
-  String? kodePos;
+  String fotoKTP;
+  String provinsi;
+  String kota;
+  String kecamatan;
+  String kelurahan;
+  String alamat;
+  String kodePos;
 
   DataDiriProv({
     this.namaPanggilan = "",
@@ -155,23 +143,93 @@ class DataDiriProv with ChangeNotifier {
 
     notifyListeners();
   }
+}
 
-  // String get namaPanggilan => _namaPanggilan;
-  // String get namaLengkap => _namaLengkap;
-  // String get email => _email;
-  // double get noHp => _noHp;
-  // String get tanggalLahir => _tanggalLahir;
-  // String get jenisKelamin => _jenisKelamin;
-  // String get pendidikanTerakhir => _pendidikanTerakhir;
-  // String get pekerjaan => _pekerjaan;
+class RegisterData extends ChangeNotifier {
+  final _userData = {
+    "user": [
+      {
+        "Nama Panggilan": "",
+        "Nama": "M Shawal Ramadhan Boger",
+        "Email": "sawalrever@gmail.com",
+        "Password": "sawal123",
+        "NoHp": "08124356721",
+        "Pekerjaan": "",
+        "Pendidikan": "",
+        "Jenis Kelamin": "Laki-laki",
+        "Tanggal Lahir": "20 Januari 2003",
+        "Domisili": "Medan",
+      },
+      {
+        "Nama Panggilan": "",
+        "Nama": "M Shawal Ramadhan Boger2",
+        "Email": "sawalrever@gmail.com2",
+        "Password": "sawal1232",
+        "NoHp": "08124356722",
+        "Pekerjaan": "Pelajar/Mahasiswa2",
+        "Pendidikan": "Sarjana2",
+        "Jenis Kelamin": "Laki-laki2",
+        "Tanggal Lahir": "20 Januari 20032",
+        "Domisili": "Medan2",
+      }
+    ]
+  };
+  get userData => _userData;
+  var userLogin;
 
-  // String get fotoKTP => _fotoKTP;
-  // String get provinsi => _provinsi;
-  // String get kota => _kota;
-  // String get kecamatan => _kecamatan;
-  // String get kelurahan => _kelurahan;
-  // String get alamat => _alamat;
-  // double get kodePos => _kodePos;
+  bool login(String nama, String password) {
+    var dataLogin = (_userData['user'] as List<Map<String, String>>)
+        .singleWhere(
+            (user) => user['Email'] == nama && user['Password'] == password);
+    userLogin = dataLogin;
+    notifyListeners();
+    return dataLogin.isNotEmpty;
+  }
+
+  void updateUserData1(
+    String namaPanggilan,
+    String nama,
+    String noHp,
+    String pekerjaan,
+    String pendidikan,
+    String gender,
+    String tgllahir,
+  ) {
+    userLogin['Nama Panggilan'] = namaPanggilan;
+    userLogin['Nama'] = nama;
+    userLogin['noHp'] = noHp;
+    userLogin['Pekerjaan'] = pekerjaan;
+    userLogin['Pendidikan'] = pendidikan;
+    userLogin['Gender'] = gender;
+    userLogin['Tanggal Lahir'] = tgllahir;
+    notifyListeners();
+  }
+
+  void updateUserData2(String domisili) {
+    userLogin['Domisili'] = domisili;
+    notifyListeners();
+  }
+
+  void updatePassword(String oldPassword, String newPassword) {
+    if (oldPassword == userLogin['Password']) {
+      userLogin['Password'] = newPassword;
+    }
+    notifyListeners();
+  }
+
+  void addUser(
+    String nama,
+    String email,
+    String password,
+  ) async {
+    var data = userData['user'] as List<Map<String, String>>;
+    data.add({
+      "Nama": nama,
+      "Email": email,
+      "Password": password,
+    });
+    notifyListeners();
+  }
 }
 
 class DataBerlanggananProv with ChangeNotifier {

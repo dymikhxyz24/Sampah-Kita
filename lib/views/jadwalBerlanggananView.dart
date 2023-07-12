@@ -49,49 +49,6 @@ class JadwalBerlangganan extends StatelessWidget {
                           );
                         },
                         itemCount: 4))
-                // ListTile(
-                //   contentPadding: EdgeInsets.only(left: 65),
-                //   leading: Icon(Icons.circle, color: Colors.grey, size: 45),
-                //   title: Text(
-                //     "Senin, 03 April 2023",
-                //     style: TextStyle(
-                //         decoration: TextDecoration.lineThrough,
-                //         color: Colors.grey),
-                //   ),
-                //   subtitle: Text(
-                //     "Jadwal Pengambilan",
-                //     style: TextStyle(
-                //         decoration: TextDecoration.lineThrough,
-                //         color: Colors.grey,
-                //         fontSize: 16),
-                //   ),
-                // ),
-                // ListTile(
-                //   contentPadding: EdgeInsets.only(left: 65),
-                //   leading:
-                //       Icon(Icons.circle, color: Color(0xffff3bd77d), size: 45),
-                //   title: Text("Senin, 10 April 2023"),
-                //   subtitle: Text(
-                //     "Jadwal Pengambilan",
-                //     style: TextStyle(fontSize: 16),
-                //   ),
-                // ),
-                // ListTile(
-                //   contentPadding: EdgeInsets.only(left: 65),
-                //   leading:
-                //       Icon(Icons.circle, color: Color(0xffff3bd77d), size: 45),
-                //   title: Text("Senin, 17 April 2023"),
-                //   subtitle: Text("Jadwal Pengambilan",
-                //       style: TextStyle(fontSize: 16)),
-                // ),
-                // ListTile(
-                //   contentPadding: EdgeInsets.only(left: 65),
-                //   leading:
-                //       Icon(Icons.circle, color: Color(0xffff3bd77d), size: 45),
-                //   title: Text("Senin, 24 April 2023"),
-                //   subtitle: Text("Jadwal Pengambilan",
-                //       style: TextStyle(fontSize: 16)),
-                // ),
               ],
             ),
             elevation: 10,

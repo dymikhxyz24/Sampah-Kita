@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/src/services/keyboard_key.g.dart';
 import 'package:provider/provider.dart';
+import 'package:uts/providers/providers.dart';
 import 'package:uts/views/Login.dart';
-import 'package:uts/providers/provider1.dart';
 import 'package:uts/views/CustomButton.dart';
 
 class Register extends StatefulWidget {
@@ -12,15 +13,56 @@ class Register extends StatefulWidget {
 }
 
 class _RegisterState extends State<Register> {
-  bool isChecked = false;
+  TextEditingController namaController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  TextEditingController repasswordController = TextEditingController();
+
+  final RegExp _emailRegex = RegExp(
+    r'^[\w-]+(\.[\w-]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*(\.[a-zA-Z]{2,})\s*$',
+  );
+
+  var activeColor = Colors.green;
+  bool _isChecked = false;
+  bool _showErrorNama = false;
+  bool _showErrorEmail = false;
+  bool _showPassword = false;
+  bool _showrePassword = false;
+  bool _showErrorPassword = false;
+  bool _showErrorrePassword = false;
+
+  bool _nama = false;
+  bool _email = false;
+  bool _pass = false;
+  bool _repass = false;
+
+  void _validateInput() {
+    setState(() {
+      _showErrorNama = namaController.text.length < 4;
+      _showErrorEmail = !_emailRegex.hasMatch(emailController.text);
+      _showErrorPassword = passwordController.text.length < 6;
+      _showErrorrePassword = repasswordController.text.length < 6;
+    });
+  }
+
+  @override
+  void dispose() {
+    namaController.dispose();
+    emailController.dispose();
+    passwordController.dispose();
+    repasswordController.dispose();
+
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    var prov = Provider.of<MyProvider>(context);
+    var prov = Provider.of<RegisterData>(context);
     return Scaffold(
       appBar: AppBar(
         title: const Text("Register"),
         automaticallyImplyLeading: false,
+        centerTitle: true,
       ),
       body: Container(
         color: Color.fromARGB(255, 183, 251, 131),
@@ -39,58 +81,108 @@ class _RegisterState extends State<Register> {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: TextField(
-              controller: prov.tfname,
+              // autofocus: true,
+              controller: namaController,
+              onChanged: (_) => _validateInput(),
               decoration: InputDecoration(
                   filled: true,
                   fillColor: Colors.white,
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10)),
-                  errorText:
-                      prov.isNameEmpty ? "Nama Tidak Boleh Kosong" : null,
+                  errorText: _nama
+                      ? (namaController.text.isEmpty
+                          ? "Nama Tidak Boleh Kosong"
+                          : _showErrorNama
+                              ? 'Nama harus min. 4 huruf'
+                              : null)
+                      : null,
                   label: Text("Masukkan Nama")),
             ),
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: TextField(
-              controller: prov.tfemail,
+              keyboardType: TextInputType.emailAddress,
+              controller: emailController,
+              onChanged: (_) => _validateInput(),
               decoration: InputDecoration(
                   filled: true,
                   fillColor: Colors.white,
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10)),
-                  errorText:
-                      prov.isemailEmpty ? "E-mail Tidak Boleh Kosong" : null,
+                  errorText: _email
+                      ? (emailController.text.isEmpty
+                          ? "E-mail Tidak Boleh Kosong"
+                          : _showErrorEmail
+                              ? "Format email salah"
+                              : null)
+                      : null,
                   label: Text("Masukkan E-mail")),
             ),
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: TextField(
-              obscureText: true,
-              controller: prov.tfpass,
+              autocorrect: false,
+              enableSuggestions: false,
+              obscureText: !_showPassword,
+              controller: passwordController,
+              onChanged: (_) => _validateInput(),
               decoration: InputDecoration(
+                  suffixIcon: IconButton(
+                      onPressed: () {
+                        setState(() {
+                          _showPassword = !_showPassword;
+                        });
+                      },
+                      icon: Icon(_showPassword
+                          ? Icons.visibility
+                          : Icons.visibility_off)),
                   filled: true,
                   fillColor: Colors.white,
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10)),
-                  errorText:
-                      prov.ispassEmpty ? "Password Tidak Boleh Kosong" : null,
+                  errorText: _pass
+                      ? (passwordController.text.isEmpty
+                          ? "Password Tidak Boleh Kosong"
+                          : _showErrorPassword
+                              ? "Password harus min. 6 karakter"
+                              : null)
+                      : null,
                   label: Text("Buat Password")),
             ),
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: TextField(
-              obscureText: true,
-              controller: prov.tfrepass,
+              autocorrect: false,
+              enableSuggestions: false,
+              obscureText: !_showrePassword,
+              controller: repasswordController,
+              onChanged: (_) => _validateInput(),
               decoration: InputDecoration(
+                suffixIcon: IconButton(
+                    onPressed: () {
+                      setState(() {
+                        _showrePassword = !_showrePassword;
+                      });
+                    },
+                    icon: Icon(_showrePassword
+                        ? Icons.visibility
+                        : Icons.visibility_off)),
                 filled: true,
                 fillColor: Colors.white,
                 border:
                     OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
-                errorText: prov.isrepassEmpty
-                    ? "Konfirmasi Password Tidak Boleh Kosong"
+                errorText: _repass
+                    ? (repasswordController.text.isEmpty
+                        ? "Konfirmasi Password Tidak Boleh Kosong"
+                        : _showErrorrePassword
+                            ? "Konfirmasi Password harus min. 6 karakter"
+                            : repasswordController.text !=
+                                    passwordController.text
+                                ? "Konfirmasi Password harus sama dengan Password diatas"
+                                : null)
                     : null,
                 label: Text("Konfirmasi Password"),
               ),
@@ -98,12 +190,15 @@ class _RegisterState extends State<Register> {
           ),
           Row(mainAxisAlignment: MainAxisAlignment.center, children: [
             Checkbox(
-                value: isChecked,
-                onChanged: (bool? value) {
-                  setState(() {
-                    isChecked = value!;
-                  });
-                }),
+              side: BorderSide(color: activeColor, width: 2),
+              value: _isChecked,
+              onChanged: (bool? value) {
+                setState(() {
+                  _isChecked = value!;
+                  activeColor = Colors.green;
+                });
+              },
+            ),
             Text("Saya Setuju dengan"),
             Text(
               "Terms of Service",
@@ -113,18 +208,55 @@ class _RegisterState extends State<Register> {
           ElevatedButton(
               style: buttonprimary,
               onPressed: () {
-                prov.setNameEmpty = prov.tfname.text.isEmpty;
-                prov.setemailEmpty = prov.tfemail.text.isEmpty;
-                prov.setpassEmpty = prov.tfpass.text.isEmpty;
-                prov.setrepassEmpty = prov.tfrepass.text.isEmpty;
+                String nama = namaController.text.trim();
+                String email = emailController.text.trim();
+                String password = passwordController.text.trim();
 
-                if (!prov.ispassEmpty &&
-                    !prov.isemailEmpty &&
-                    !prov.isNameEmpty &&
-                    !prov.isrepassEmpty &&
-                    isChecked) {
+                if (namaController.text.isNotEmpty &&
+                    emailController.text.isNotEmpty &&
+                    passwordController.text.isNotEmpty &&
+                    repasswordController.text.isNotEmpty &&
+                    _isChecked &&
+                    !_showErrorNama &&
+                    !_showErrorEmail &&
+                    !_showErrorPassword &&
+                    !_showErrorrePassword) {
+                  prov.addUser(nama, email, password);
                   Navigator.push(
                       context, MaterialPageRoute(builder: (_) => Login()));
+                }
+                if (namaController.text.isEmpty ||
+                    emailController.text.isEmpty ||
+                    passwordController.text.isEmpty ||
+                    repasswordController.text.isEmpty) {
+                  setState(() {
+                    _nama = true;
+                    _email = true;
+                    _pass = true;
+                    _repass = true;
+                  });
+
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        content: Text("Form tidak boleh kosong"),
+                        actions: [
+                          TextButton(
+                            child: Text("OK"),
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                          ),
+                        ],
+                      );
+                    },
+                  );
+                }
+                if (!_isChecked) {
+                  setState(() {
+                    activeColor = Colors.red;
+                  });
                 }
               },
               child: Text(

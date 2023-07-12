@@ -1,20 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
+import 'package:uts/providers/providers.dart';
 
-class Profil extends StatelessWidget {
+class Profil extends StatefulWidget {
   const Profil({super.key});
 
   @override
+  State<Profil> createState() => _ProfilState();
+}
+
+class _ProfilState extends State<Profil> {
+  @override
   Widget build(BuildContext context) {
-    Map<String, String> data = {
-      "Nama Lengkap": "M Shahwal Ramadhan Boger",
-      "Email": "sawalalonso@gmail.com",
-      "Pekerjaan": "Pelajar/Mahasiswa",
-      "Pendidikan": "Sarjana",
-      "Jenis Kelamin": "Laki-laki",
-      "Tanggal Lahir": "20 Januari 2003",
-      "Domisili": "Medan"
-    };
+    var prov = Provider.of<RegisterData>(context);
+    var prov1 = Provider.of<DataDiriProv>(context);
+    // Map<String, String> data = {
+    //   "Nama Lengkap": "M Shahwal Ramadhan Boger",
+    //   "Email": "sawalalonso@gmail.com",
+    //   "Pekerjaan": "Pelajar/Mahasiswa",
+    //   "Pendidikan": "Sarjana",
+    //   "Jenis Kelamin": "Laki-laki",
+    //   "Tanggal Lahir": "20 Januari 2003",
+    //   "Domisili": "Medan"
+    // };
 
     return Scaffold(
       appBar: AppBar(
@@ -38,13 +47,13 @@ class Profil extends StatelessWidget {
                 scale: 18,
               ),
               Text(
-                "0811256498",
+                prov.userLogin['NoHp'],
                 style: TextStyle(fontSize: 18),
               )
             ],
           ),
           Text(
-            "M Shahwal Ramadhan Boger",
+            prov.userLogin['Nama'],
             style: TextStyle(fontSize: 17, fontWeight: FontWeight.w500),
           ),
           SizedBox(height: 5),
@@ -59,7 +68,7 @@ class Profil extends StatelessWidget {
           ),
           Text(
             "Menjadi Anggota Sejak ${DateFormat("dd MMMM yyyy", "id_ID").format(DateTime.now())}",
-            style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+            style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
           ),
           Card(
             elevation: 10,
@@ -89,10 +98,8 @@ class Profil extends StatelessWidget {
                   height: 250,
                   decoration: BoxDecoration(color: Color(0xfffE2F1E4)),
                   child: ListView.separated(
-                    itemCount: data.length,
+                    itemCount: 1,
                     itemBuilder: (context, index) {
-                      String? key = data.keys.elementAt(index);
-                      String? value = data[key];
                       return Table(
                         columnWidths: {
                           0: FlexColumnWidth(1),
@@ -102,16 +109,122 @@ class Profil extends StatelessWidget {
                           TableRow(children: [
                             TableCell(
                               child: Text(
-                                key,
+                                "Nama Lengkap",
                                 style: TextStyle(
-                                    fontSize: 15, fontWeight: FontWeight.w500),
+                                    fontSize: 18, fontWeight: FontWeight.w500),
                               ),
                             ),
                             TableCell(
                               child: Text(
-                                ":\t ${value}",
+                                ":   ${prov.userLogin['Nama']}",
                                 style: TextStyle(
-                                    fontSize: 15, fontWeight: FontWeight.w500),
+                                    fontSize: 18, fontWeight: FontWeight.w500),
+                              ),
+                            )
+                          ]),
+                          TableRow(children: [
+                            TableCell(
+                              child: Text(
+                                "Email",
+                                style: TextStyle(
+                                    fontSize: 18, fontWeight: FontWeight.w500),
+                              ),
+                            ),
+                            TableCell(
+                              child: Text(
+                                ":   ${prov.userLogin['Email']}",
+                                style: TextStyle(
+                                    fontSize: 18, fontWeight: FontWeight.w500),
+                              ),
+                            )
+                          ]),
+                          TableRow(children: [
+                            TableCell(
+                              child: Text(
+                                "Pekerjaan",
+                                style: TextStyle(
+                                    fontSize: 18, fontWeight: FontWeight.w500),
+                              ),
+                            ),
+                            TableCell(
+                              child: Text(
+                                prov.userLogin['Pekerjaan'] != ""
+                                    ? ':   ${prov.userLogin['Pekerjaan']}'
+                                    : ':   -',
+                                style: TextStyle(
+                                    fontSize: 18, fontWeight: FontWeight.w500),
+                              ),
+                            )
+                          ]),
+                          TableRow(children: [
+                            TableCell(
+                              child: Text(
+                                "Pendidikan",
+                                style: TextStyle(
+                                    fontSize: 18, fontWeight: FontWeight.w500),
+                              ),
+                            ),
+                            TableCell(
+                              child: Text(
+                                prov.userLogin['Pendidikan'] != ""
+                                    ? ':   ${prov.userLogin['Pendidikan']}'
+                                    : ':   -',
+                                style: TextStyle(
+                                    fontSize: 18, fontWeight: FontWeight.w500),
+                              ),
+                            )
+                          ]),
+                          TableRow(children: [
+                            TableCell(
+                              child: Text(
+                                "Jenis Kelamin",
+                                style: TextStyle(
+                                    fontSize: 18, fontWeight: FontWeight.w500),
+                              ),
+                            ),
+                            TableCell(
+                              child: Text(
+                                prov.userLogin['Jenis Kelamin'] != ""
+                                    ? ':   ${prov.userLogin['Jenis Kelamin']}'
+                                    : ':   -',
+                                style: TextStyle(
+                                    fontSize: 18, fontWeight: FontWeight.w500),
+                              ),
+                            )
+                          ]),
+                          TableRow(children: [
+                            TableCell(
+                              child: Text(
+                                "Tanggal Lahir",
+                                style: TextStyle(
+                                    fontSize: 18, fontWeight: FontWeight.w500),
+                              ),
+                            ),
+                            TableCell(
+                              child: Text(
+                                prov.userLogin['Tanggal Lahir'] != ""
+                                    ? ':   ${prov.userLogin['Tanggal Lahir']}'
+                                    : ':   -',
+                                style: TextStyle(
+                                    fontSize: 18, fontWeight: FontWeight.w500),
+                              ),
+                            )
+                          ]),
+                          TableRow(children: [
+                            TableCell(
+                              child: Text(
+                                "Domisili",
+                                style: TextStyle(
+                                    fontSize: 18, fontWeight: FontWeight.w500),
+                              ),
+                            ),
+                            TableCell(
+                              child: Text(
+                                prov.userLogin['Domisili'] != ""
+                                    ? ':   ${prov.userLogin['Domisili']}'
+                                    : ':   -',
+                                style: TextStyle(
+                                    fontSize: 18, fontWeight: FontWeight.w500),
                               ),
                             )
                           ])

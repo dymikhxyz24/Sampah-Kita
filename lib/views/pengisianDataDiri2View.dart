@@ -45,6 +45,7 @@ class _PengisianDataDiriSecondState extends State<PengisianDataDiriSecond> {
 
   @override
   Widget build(BuildContext context) {
+    var prov1 = Provider.of<RegisterData>(context);
     final prov = Provider.of<DataDiriProv>(context);
     return Scaffold(
       appBar: AppBar(
@@ -231,32 +232,17 @@ class _PengisianDataDiriSecondState extends State<PengisianDataDiriSecond> {
                             alamat != null &&
                             kodePos != null) {
                           prov.updateData(
-                              fotoKTP: imageFile,
-                              kota: kota,
-                              kecamatan: kecamatan,
-                              kelurahan: kelurahan,
-                              alamat: alamat,
-                              kodePos: kodePos);
-
-                          print(prov.namaPanggilan);
-                          print(prov.namaLengkap);
-                          print(prov.email);
-                          print(prov.noHp);
-                          print(prov.tanggalLahir);
-                          print(prov.jenisKelamin);
-                          print(prov.pendidikanTerakhir);
-                          print(prov.pekerjaan);
-
-                          print(prov.fotoKTP);
-                          print(prov.kota);
-                          print(prov.kecamatan);
-                          print(prov.kelurahan);
-                          print(prov.alamat);
-                          print(prov.kodePos);
-                          Navigator.of(context)
-                              .push(MaterialPageRoute(builder: (context) {
-                            return VerifikasiLangganan();
-                          }));
+                              fotoKTP: imageFile!.trim(),
+                              kota: kota!.trim(),
+                              kecamatan: kecamatan!.trim(),
+                              kelurahan: kelurahan!.trim(),
+                              alamat: alamat!.trim(),
+                              kodePos: kodePos!.trim());
+                          prov1.updateUserData2(kota!.trim());
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (_) => VerifikasiLangganan()));
                         } else {
                           showDialog(
                               context: context,

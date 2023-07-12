@@ -20,7 +20,7 @@ class _EdukasiSampahSemenState extends State<EdukasiSampahSemen> {
     _controller = YoutubePlayerController(
         initialVideoId: videoID!,
         flags:
-            YoutubePlayerFlags(autoPlay: false, controlsVisibleAtStart: true));
+            YoutubePlayerFlags(autoPlay: true, controlsVisibleAtStart: true));
   }
 
   @override
