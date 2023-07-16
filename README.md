@@ -1,6 +1,6 @@
-# uts
+# SampahKita
 
-A new Flutter project.
+Project Aplikasi Pengelolaan Sampah
 
 ## Getting Started
 
