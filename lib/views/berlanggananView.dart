@@ -57,7 +57,8 @@ class _BerlanggananState extends State<Berlangganan> {
               ),
               items: lokasiPengambilan,
               onChanged: (val) {
-                prov.lokasiTPA = val;
+                // prov.lokasiTPA = val;
+                prov.updateData(lokasiTPA: val);
               },
               selectedItem: lokasiPengambilan[0],
             ),
@@ -70,13 +71,17 @@ class _BerlanggananState extends State<Berlangganan> {
               ),
               items: jadwalPenjemputan,
               onChanged: (val) {
-                prov.jadwalPenjemputan = val;
+                // prov.jadwalPenjemputan = val;
+                prov.updateData(jadwalPenjemputan: val);
                 if (jadwalPenjemputan.indexOf(val!) == 0) {
-                  prov.langkah = 7;
+                  // prov.langkah = 7;
+                  prov.updateData(langkah: 7);
                 } else if (jadwalPenjemputan.indexOf(val) == 1) {
-                  prov.langkah = 4;
+                  // prov.langkah = 4;
+                  prov.updateData(langkah: 4);
                 } else {
-                  prov.langkah = 7;
+                  // prov.langkah = 7;
+                  prov.updateData(langkah: 7);
                 }
                 // print(jadwalPenjemputan.indexOf(val!));
               },

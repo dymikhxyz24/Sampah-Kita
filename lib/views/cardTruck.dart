@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:uts/providers/providers.dart';
+import '../providers/providers.dart';
 
 class onTheWay extends StatefulWidget {
   const onTheWay({Key? key}) : super(key: key);
@@ -31,6 +31,7 @@ class _onTheWayState extends State<onTheWay> with TickerProviderStateMixin {
   bool _isVisible = true;
   @override
   void initState() {
+    super.initState();
     print("initstate called");
     Timer(Duration(seconds: 30), () {
       _isVisible = false;
@@ -64,7 +65,7 @@ class _onTheWayState extends State<onTheWay> with TickerProviderStateMixin {
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
             elevation: 8,
-            color: Colors.green,
+            color: Color(0xffff3bd77d),
             shadowColor: Colors.black,
             child: Padding(
               padding: const EdgeInsets.fromLTRB(16, 10, 16, 10),
@@ -72,7 +73,7 @@ class _onTheWayState extends State<onTheWay> with TickerProviderStateMixin {
                 children: [
                   Container(
                     height: 120,
-                    color: Colors.green,
+                    color: Color(0xffff3bd77d),
                     child: Image.network(
                         width: 100,
                         height: 100,

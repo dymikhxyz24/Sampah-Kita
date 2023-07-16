@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:uts/views/Dashboard.dart';
+import '../views/Dashboard.dart';
 
 class VerifikasiLangganan extends StatefulWidget {
   const VerifikasiLangganan({super.key});

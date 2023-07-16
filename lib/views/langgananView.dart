@@ -72,7 +72,7 @@ class _LangganganViewState extends State<LangganganView> {
                 padding: EdgeInsets.symmetric(horizontal: 50, vertical: 10)),
             child: Text(
               "Lengkapi Data Diri",
-              style: TextStyle(fontSize: 18),
+              style: TextStyle(fontSize: 18, color: Colors.black),
             ),
             onPressed: () {
               Navigator.of(context).push(MaterialPageRoute(builder: (context) {

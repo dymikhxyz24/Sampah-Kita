@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:uts/views/BottomNavBar.dart';
-import 'package:uts/views/DashboardView.dart';
-import 'package:uts/views/Info.dart';
-import 'package:uts/views/Notifikasi.dart';
-import 'package:uts/views/pesan.dart';
-import 'package:uts/views/riwayatView.dart';
+import '../views/bottomNavBar.dart';
+import '../views/DashboardView.dart';
+import '../views/Info.dart';
+import '../views/Notifikasi.dart';
+import '../views/pesan.dart';
 
 class Dashboard extends StatefulWidget {
   @override
@@ -39,7 +38,7 @@ class _DashboardState extends State<Dashboard> {
     return Scaffold(
       body: page,
       bottomNavigationBar: SizedBox(
-        height: 80,
+        height: 70,
         child: BottomNavBar(
           selectedPage: _selectedPage,
           onTap: _onTabTapped,

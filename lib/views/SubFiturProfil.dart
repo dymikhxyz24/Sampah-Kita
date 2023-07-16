@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:uts/views/login.dart';
+import '../views/login.dart';
 import '../views/profil.dart';
 import './GantiPassword.dart';
 import './KebijakanPrivasi.dart';

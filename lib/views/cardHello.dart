@@ -1,8 +1,6 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:uts/providers/providers.dart';
+import '../providers/providers.dart';
 
 class hello extends StatefulWidget {
   const hello({super.key});
@@ -42,7 +40,7 @@ class _helloState extends State<hello> with TickerProviderStateMixin {
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
           elevation: 8,
-          color: Colors.green,
+          color: Color(0xffff3BD77D),
           shadowColor: Colors.black,
           child: Padding(
             padding: const EdgeInsets.fromLTRB(16, 10, 16, 10),
@@ -50,7 +48,7 @@ class _helloState extends State<hello> with TickerProviderStateMixin {
               children: [
                 Container(
                   height: 120,
-                  color: Colors.green,
+                  // color: Color(0xffff3BD77D),
                   child: Image.network(
                       width: 100,
                       height: 100,
@@ -64,8 +62,9 @@ class _helloState extends State<hello> with TickerProviderStateMixin {
                       style:
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
                     ),
+                    SizedBox(height: 5),
                     Text(
-                      "Apakah kamu sudah siap untung membuang sampah hari ini?",
+                      "Apakah kamu sudah siap untuk membuang sampah hari ini?",
                       textAlign: TextAlign.center,
                       style:
                           TextStyle(fontStyle: FontStyle.italic, fontSize: 16),

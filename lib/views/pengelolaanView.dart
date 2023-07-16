@@ -2,10 +2,9 @@ import 'package:dropdown_search/dropdown_search.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:uts/views/Dashboard.dart';
+import 'package:provider/provider.dart';
 import '../providers/providers.dart';
 import '../views/mapsPengelolaanViews.dart';
-import 'package:provider/provider.dart';
 
 class PengelolaanView extends StatefulWidget {
   const PengelolaanView({super.key});
@@ -53,7 +52,7 @@ class _PengelolaanViewState extends State<PengelolaanView> {
   @override
   Widget build(BuildContext context) {
     var prov = Provider.of<PengelolaanProv>(context);
-    var prov1 = Provider.of<RegisterData>(context);
+    // var prov1 = Provider.of<RegisterData>(context);
 
     return Scaffold(
       appBar: AppBar(
@@ -135,7 +134,10 @@ class _PengelolaanViewState extends State<PengelolaanView> {
                           ),
                           elevation: MaterialStatePropertyAll(0),
                         ),
-                        child: Text("Upload File")),
+                        child: Text(
+                          "Upload File",
+                          style: TextStyle(color: Colors.black),
+                        )),
                     Expanded(
                         child: Text(
                       prov.fotoSampah,
@@ -250,13 +252,12 @@ class _PengelolaanViewState extends State<PengelolaanView> {
                           ],
                         ),
                       ),
-                      SizedBox(width: 10),
+                      SizedBox(width: 5),
                       Expanded(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text("Berat Sampah (Kg)",
-                                style: TextStyle(fontSize: 15)),
+                            Text("Berat (kg)", style: TextStyle(fontSize: 15)),
                             SizedBox(
                               height: 48,
                               child: TextField(
@@ -333,7 +334,7 @@ class _PengelolaanViewState extends State<PengelolaanView> {
                           prov.lokasiPengambilan != "") {
                         Navigator.of(context)
                             .push(MaterialPageRoute(builder: (context) {
-                          return Dashboard();
+                          return MapsPengelolaanView();
                         }));
                       } else {
                         showDialog(

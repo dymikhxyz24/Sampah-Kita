@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:uts/data/dummyPesan.dart';
+import '../data/dummyPesan.dart';
 
 class pesanPage extends StatefulWidget {
   const pesanPage({super.key});
@@ -37,6 +37,7 @@ class _pesanPageState extends State<pesanPage> {
       appBar: AppBar(
         title: Text("Pesan"),
         centerTitle: true,
+        backgroundColor: Color(0xffff3BD77D),
       ),
       body: Padding(
         padding: const EdgeInsets.only(top: 20),

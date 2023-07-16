@@ -1,10 +1,4 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
-import 'package:uts/views/cardHello.dart';
-
-import 'package:uts/views/cardTruck.dart';
-
 import '../models/models.dart';
 
 class PengelolaanProv with ChangeNotifier {
@@ -150,7 +144,7 @@ class RegisterData extends ChangeNotifier {
     "user": [
       {
         "Nama Panggilan": "",
-        "Nama": "M Shawal Ramadhan Boger",
+        "Nama": "Muhammad Shahwal",
         "Email": "sawalrever@gmail.com",
         "Password": "sawal123",
         "NoHp": "08124356721",
@@ -162,15 +156,15 @@ class RegisterData extends ChangeNotifier {
       },
       {
         "Nama Panggilan": "",
-        "Nama": "M Shawal Ramadhan Boger2",
-        "Email": "sawalrever@gmail.com2",
-        "Password": "sawal1232",
-        "NoHp": "08124356722",
-        "Pekerjaan": "Pelajar/Mahasiswa2",
-        "Pendidikan": "Sarjana2",
-        "Jenis Kelamin": "Laki-laki2",
-        "Tanggal Lahir": "20 Januari 20032",
-        "Domisili": "Medan2",
+        "Nama": "Dida Adithya",
+        "Email": "dida@gmail.com",
+        "Password": "dida123",
+        "NoHp": "0812435672",
+        "Pekerjaan": "Pelajar/Mahasiswa",
+        "Pendidikan": "Sarjana",
+        "Jenis Kelamin": "Laki-laki",
+        "Tanggal Lahir": "20 Januari 2002",
+        "Domisili": "Medan",
       }
     ]
   };
@@ -210,10 +204,15 @@ class RegisterData extends ChangeNotifier {
     notifyListeners();
   }
 
-  void updatePassword(String oldPassword, String newPassword) {
-    if (oldPassword == userLogin['Password']) {
-      userLogin['Password'] = newPassword;
-    }
+  // void updatePassword(String oldPassword, String newPassword) {
+  //   if (oldPassword == userLogin['Password']) {
+  //     userLogin['Password'] = newPassword;
+  //   }
+  //   notifyListeners();
+  // }
+
+  void updatePassword(idx, newPassword) {
+    userData['user'][idx]['Password'] = newPassword;
     notifyListeners();
   }
 
@@ -227,6 +226,12 @@ class RegisterData extends ChangeNotifier {
       "Nama": nama,
       "Email": email,
       "Password": password,
+      "NoHp": "",
+      "Pekerjaan": "",
+      "Pendidikan": "",
+      "Jenis Kelamin": "",
+      "Tanggal Lahir": "",
+      "Domisili": "",
     });
     notifyListeners();
   }

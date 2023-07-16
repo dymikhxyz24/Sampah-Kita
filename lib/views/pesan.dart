@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
-
-import 'package:uts/data/dummyNotifikasi.dart';
+import '../data/dummyNotifikasi.dart';
 
 class homePesan extends StatefulWidget {
   const homePesan({super.key});
@@ -22,9 +21,11 @@ class _homePesanState extends State<homePesan> {
       appBar: trashCan.isEmpty
           ? AppBar(
               title: Text("Pesan"),
+              centerTitle: true,
+              backgroundColor: Color(0xffff3bd77d),
             )
           : AppBar(
-              backgroundColor: Color.fromARGB(255, 58, 132, 61),
+              backgroundColor: Color(0xffff3bd77d),
               leading: IconButton(
                   icon: Icon(Icons.clear),
                   onPressed: () {

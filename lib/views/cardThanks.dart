@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:uts/providers/providers.dart';
+import '../providers/providers.dart';
 
 class thanks extends StatefulWidget {
   const thanks({Key? key}) : super(key: key);
@@ -43,7 +43,7 @@ class _thanksState extends State<thanks> with TickerProviderStateMixin {
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
             elevation: 8,
-            color: Colors.green,
+            color: Color(0xffff3BD77D),
             shadowColor: Colors.black,
             child: Padding(
               padding: const EdgeInsets.fromLTRB(16, 10, 16, 10),
@@ -51,7 +51,7 @@ class _thanksState extends State<thanks> with TickerProviderStateMixin {
                 children: [
                   Container(
                     height: 120,
-                    color: Colors.green,
+                    color: Color(0xffff3BD77D),
                     child: Image.network(
                         width: 100,
                         height: 100,
@@ -60,11 +60,13 @@ class _thanksState extends State<thanks> with TickerProviderStateMixin {
                   Expanded(
                       child: Column(
                     children: [
+                      SizedBox(height: 10),
                       Text(
                         "Terima Kasih sudah memanggil kami!",
                         style: TextStyle(
                             fontWeight: FontWeight.bold, fontSize: 18),
                       ),
+                      SizedBox(height: 10),
                       Text(
                         "Apakah sampahnya sudah dibuang?",
                         textAlign: TextAlign.center,

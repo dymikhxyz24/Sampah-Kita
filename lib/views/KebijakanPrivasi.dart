@@ -13,16 +13,6 @@ class _KebijakanPrivasiState extends State<KebijakanPrivasi> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xffff3bd77d),
-        leading: IconButton(
-          icon: Icon(
-            Icons.chevron_left,
-            size: 30,
-            color: Colors.black,
-          ),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
         title: const Text("Kebijakan Privasi", textAlign: TextAlign.center),
         centerTitle: true,
       ),

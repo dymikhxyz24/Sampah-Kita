@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import 'package:uts/data/dummyNotifikasi.dart';
+import '../data/dummyNotifikasi.dart';
 
 class Notifikasi extends StatefulWidget {
   const Notifikasi({super.key});
@@ -28,6 +27,8 @@ class _NotifikasiState extends State<Notifikasi> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Notifikasi"),
+        centerTitle: true,
+        backgroundColor: Color(0xffff3BD77D),
       ),
       body: ListView.builder(
         itemCount: notifData.length,
@@ -72,6 +73,7 @@ class _NotifikasiState extends State<Notifikasi> {
         },
       ),
       floatingActionButton: FloatingActionButton(
+        backgroundColor: Color(0xffff3bd77d),
         onPressed: deleteAllItems,
         child: Icon(Icons.delete),
       ),

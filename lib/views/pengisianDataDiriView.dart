@@ -1,10 +1,9 @@
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:uts/views/profil.dart';
+import 'package:provider/provider.dart';
 import '../providers/providers.dart';
 import '../views/pengisianDataDiri2View.dart';
-import 'package:provider/provider.dart';
 
 class PengisianDataDiri extends StatefulWidget {
   const PengisianDataDiri({super.key});
@@ -65,7 +64,7 @@ class _PengisianDataDiriState extends State<PengisianDataDiri> {
 
   @override
   Widget build(BuildContext context) {
-    final prov = Provider.of<DataDiriProv>(context);
+    // final prov = Provider.of<DataDiriProv>(context);
     var prov1 = Provider.of<RegisterData>(context);
 
     return Scaffold(

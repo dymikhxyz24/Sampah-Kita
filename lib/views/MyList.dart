@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'EdukasiSampahSemen.dart';
-import 'EdukasiBotolPlastik.dart';
-import 'EdukasiEmber.dart';
-import 'EdukasiLogam.dart';
-import 'EdukasiBesi.dart';
-import 'EdukasiKardus.dart';
-import 'EdukasiKertas.dart';
-import 'EdukasiBotolBeling.dart';
+import 'edukasiSampahSemen.dart';
+import 'edukasiBotolPlastik.dart';
+import 'edukasiEmber.dart';
+import 'edukasiLogam.dart';
+import 'edukasiBesi.dart';
+import 'edukasiKardus.dart';
+import 'edukasiKertas.dart';
+import 'edukasiBotolBeling.dart';
 
 class WasteItem {
   final String title;

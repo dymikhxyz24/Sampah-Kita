@@ -1,9 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:uts/views/Info.dart';
-import 'package:uts/views/Login.dart';
-import 'package:uts/views/Notifikasi.dart';
-import 'package:uts/views/pesan.dart';
-import 'package:uts/views/Dashboard.dart';
 
 class BottomNavBar extends StatefulWidget {
   const BottomNavBar(
@@ -22,7 +17,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
       currentIndex: widget.selectedPage,
       onTap: widget.onTap,
       type: BottomNavigationBarType.fixed,
-      backgroundColor: Colors.green,
+      backgroundColor: Color(0xffff3BD77D),
       selectedItemColor: Colors.white,
       items: [
         BottomNavigationBarItem(

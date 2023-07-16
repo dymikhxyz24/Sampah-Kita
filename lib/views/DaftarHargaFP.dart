@@ -1,9 +1,6 @@
-import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:uts/views/DaftarHargaMain.dart';
-import 'package:uts/data/dummyDaftarHarga.dart';
+import '../views/DaftarHargaMain.dart';
+import '../data/dummyDaftarHarga.dart';
 
 class DaftarHargaFP extends StatefulWidget {
   const DaftarHargaFP({Key? key}) : super(key: key);
