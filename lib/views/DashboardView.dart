@@ -345,11 +345,11 @@ class _DashboardViewState extends State<DashboardView> {
             ),
             Padding(
               padding: EdgeInsets.all(16),
-              child: prov2.tanggalPengambilan == ''
+              child: prov2.statusPengambilan == ''
                   ? hello()
-                  : prov2.tanggalPengambilan == "DONE"
+                  : prov2.statusPengambilan == "DONE"
                       ? thanks()
-                      : prov2.tanggalPengambilan != ''
+                      : prov2.statusPengambilan != ''
                           ? onTheWay()
                           : null,
             )

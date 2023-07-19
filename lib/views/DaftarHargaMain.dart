@@ -42,7 +42,7 @@ class _DaftarHarga1State extends State<DaftarHarga1> {
       appBar: AppBar(
         title: Text('Daftar Harga'),
         centerTitle: true,
-        backgroundColor: Colors.green,
+        backgroundColor: Color(0xffff3BD77D),
       ),
       body: Column(
         children: [
@@ -132,8 +132,9 @@ class _DaftarHarga1State extends State<DaftarHarga1> {
                     },
                     child: Text(page.toString()),
                     style: ElevatedButton.styleFrom(
-                      backgroundColor:
-                          currentPage == page ? Colors.green : Colors.grey,
+                      backgroundColor: currentPage == page
+                          ? Color(0xffff3BD77D)
+                          : Colors.grey,
                     ),
                   ),
                 Visibility(

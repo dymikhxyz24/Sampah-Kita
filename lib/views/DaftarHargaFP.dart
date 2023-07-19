@@ -14,7 +14,7 @@ class _DaftarHargaFPState extends State<DaftarHargaFP> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          backgroundColor: Colors.green,
+          backgroundColor: Color(0xffff3BD77D),
           title: Text('Daftar Harga'),
           centerTitle: true),
       body: Container(
@@ -49,8 +49,7 @@ class _DaftarHargaFPState extends State<DaftarHargaFP> {
                     );
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.green,
-                  ),
+                      backgroundColor: Color(0xffff3BD77D)),
                   child: Text(
                     'Lihat Lebih Banyak',
                     style: TextStyle(

@@ -85,7 +85,7 @@ class _thanksState extends State<thanks> with TickerProviderStateMixin {
 
                                 Timer(Duration(seconds: 3), () {
                                   _isVisible = false;
-                                  prov.setTanggalPengambilan("");
+                                  prov.setStatusPengambilan("");
                                 });
                               });
                             },

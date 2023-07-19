@@ -332,6 +332,7 @@ class _PengelolaanViewState extends State<PengelolaanView> {
                     onPressed: () {
                       if (prov.tanggalPengambilan != "" &&
                           prov.lokasiPengambilan != "") {
+                        prov.setStatusPengambilan("didaganteng");
                         Navigator.of(context)
                             .push(MaterialPageRoute(builder: (context) {
                           return MapsPengelolaanView();

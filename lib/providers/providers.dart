@@ -6,6 +6,7 @@ class PengelolaanProv with ChangeNotifier {
   String _keterangan = '';
   String _tanggalPengambilan = '';
   String _waktuPengambilan = '';
+  String _statusPengambilan = '';
   String _lokasiPengambilan = '';
   double _lati = 0;
   double _long = 0;
@@ -16,6 +17,7 @@ class PengelolaanProv with ChangeNotifier {
   String get tanggalPengambilan => _tanggalPengambilan;
   String get waktuPengambilan => _waktuPengambilan;
   String get lokasiPengambilan => _lokasiPengambilan;
+  String get statusPengambilan => _statusPengambilan;
   double get lati => _lati;
   double get long => _long;
   List<jenisBeratModel> get jenisBerat => _jenisBerat;
@@ -52,6 +54,11 @@ class PengelolaanProv with ChangeNotifier {
 
   void setLongtitude(val) {
     _long = val;
+    notifyListeners();
+  }
+
+  void setStatusPengambilan(val) {
+    _statusPengambilan = val;
     notifyListeners();
   }
 
@@ -180,6 +187,11 @@ class RegisterData extends ChangeNotifier {
     return dataLogin.isNotEmpty;
   }
 
+  void updateUserData2(String domisili) {
+    userLogin['Domisili'] = domisili;
+    notifyListeners();
+  }
+
   void updateUserData1(
     String namaPanggilan,
     String nama,
@@ -199,18 +211,7 @@ class RegisterData extends ChangeNotifier {
     notifyListeners();
   }
 
-  void updateUserData2(String domisili) {
-    userLogin['Domisili'] = domisili;
-    notifyListeners();
-  }
-
-  // void updatePassword(String oldPassword, String newPassword) {
-  //   if (oldPassword == userLogin['Password']) {
-  //     userLogin['Password'] = newPassword;
-  //   }
-  //   notifyListeners();
-  // }
-
+  // membuat fungsi updatePassword tersendiri tanpa mengganggu function lain
   void updatePassword(idx, newPassword) {
     userData['user'][idx]['Password'] = newPassword;
     notifyListeners();
@@ -223,6 +224,7 @@ class RegisterData extends ChangeNotifier {
   ) async {
     var data = userData['user'] as List<Map<String, String>>;
     data.add({
+      "Nama Panggilan": "",
       "Nama": nama,
       "Email": email,
       "Password": password,

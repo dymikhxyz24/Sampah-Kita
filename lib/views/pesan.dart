@@ -1,3 +1,4 @@
+import 'package:SampahKita/views/pesanPage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import '../data/dummyNotifikasi.dart';
@@ -94,6 +95,8 @@ class _homePesanState extends State<homePesan> {
                   ),
                   subtitle: Text(description),
                   onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => pesanPage()));
                     if (pesan.checked & checkedState) {
                       setState(() {
                         pesan.checked = false;

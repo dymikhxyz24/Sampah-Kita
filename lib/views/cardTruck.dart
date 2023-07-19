@@ -31,7 +31,6 @@ class _onTheWayState extends State<onTheWay> with TickerProviderStateMixin {
   bool _isVisible = true;
   @override
   void initState() {
-    super.initState();
     print("initstate called");
     Timer(Duration(seconds: 30), () {
       _isVisible = false;
@@ -53,7 +52,8 @@ class _onTheWayState extends State<onTheWay> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     var prov = Provider.of<PengelolaanProv>(context);
     Timer(Duration(seconds: 34), () {
-      prov.setTanggalPengambilan("DONE");
+      prov.setStatusPengambilan("DONE");
+      print(prov.statusPengambilan);
     });
     return SizeTransition(
       sizeFactor: _animation,
